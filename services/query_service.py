@@ -6,32 +6,6 @@
 class QueryService:
     def __init__(self, conn):
         self.conn = conn
-    '''
-    def consulta_livros_disponiveis(self):
-        cursor = self.conn.cursor()
-        cursor.execute("""
-            SELECT l.Titulo, a.Nome as Autor, e.Nome as Editora, l.Ano_Publicacao
-            FROM Livro l
-            JOIN Co_Autor ca ON l.Id_Livro = ca.Id_Livro
-            JOIN Autor a ON ca.Id_Autor = a.Id_Autor
-            JOIN Editora e ON l.Id_Editora = e.Id_Editora
-            WHERE l.Status = 'disponivel'
-            ORDER BY l.Titulo
-        """)
-        
-        livros = cursor.fetchall()
-        cursor.close()
-        
-        if not livros:
-            print("Nenhum livro disponível encontrado.")
-            return []
-        
-        print("\n=== LIVROS DISPONÍVEIS ===")
-        for livro in livros:
-            print(f"• {livro[0]} - {livro[1]} ({livro[3]}) - Editora: {livro[2]}")
-        
-        return livros
-    '''
     def consulta_livros_disponiveis(self):
         cursor = self.conn.cursor()
         try:
